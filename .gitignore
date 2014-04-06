@@ -19,3 +19,21 @@
 *.exe
 *.out
 *.app
+
+# Node.JS
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+.DS_Store
+
+pids
+logs
+results
+
+npm-debug.log
+node_modules
