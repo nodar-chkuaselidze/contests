@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/nodar-chkuaselidze/contests/issues"
   },
-  "homepage": "https://github.com/nodar-chkuaselidze/contests"
+
+  "homepage": "https://github.com/nodar-chkuaselidze/contests",
+    
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.6.3"
+  }
 }
