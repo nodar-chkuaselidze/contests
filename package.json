@@ -18,7 +18,8 @@
   "homepage": "https://github.com/nodar-chkuaselidze/contests",
   "devDependencies": {
     "grunt": "~0.4.2",
-    "grunt-contrib-jshint": "~0.6.3"
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-mocha-test": "^0.10.0"
   },
   "dependencies": {
     "async": "^0.7.0",
