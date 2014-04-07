@@ -1,4 +1,6 @@
+'use strict';
 module.exports = function(grunt) {
+  require('time-grunt')(grunt);
   
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
@@ -58,7 +60,7 @@ module.exports = function(grunt) {
     mochaTest: {
       test: {
         options: {
-          reporter: 'dot'
+          reporter: 'spec'
         },
         src: ['tests/**/*.js']
       }
