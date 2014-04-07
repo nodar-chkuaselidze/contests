@@ -1,19 +1,19 @@
 {
-  "name": "olymp",
+  "name": "contests",
   "version": "0.0.0",
   "description": "Training environment",
-  "main": "olymp.js",
+  "main": "contests.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/nodar-chkuaselidze/olympiads.git"
+    "url": "git@github.com:nodar-chkuaselidze/contests.git"
   },
   "author": "Nodari Chkuaselidze",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nodar-chkuaselidze/olympiads/issues"
+    "url": "https://github.com/nodar-chkuaselidze/contests/issues"
   },
-  "homepage": "https://github.com/nodar-chkuaselidze/olympiads"
+  "homepage": "https://github.com/nodar-chkuaselidze/contests"
 }
