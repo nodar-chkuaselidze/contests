@@ -1,14 +1,16 @@
 'use strict';
 
-var program = require('./package.json'),
-    debug = require('debug')('contests.js'),
-    fs    = require('fs'),
-    shell = require('commander');
+global.program = require('./package.json');
+global.ROOT    = __dirname;
+global.fs      = require('fs');
+global.args    = require('commander');
 
+var debug = require('debug')('contests');
 
-shell
+args
   .version(program.version)
   .parse(process.argv);
 
-console.log(process.env['USERPORFILE']);
-console.log(process.env['HOME']);
+
+process.home = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
+console.log(process.env);
