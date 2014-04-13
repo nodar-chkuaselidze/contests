@@ -52,7 +52,10 @@ module.exports = function(grunt) {
           describe: true,
           it:       true,
           ROOT:     true,
-          async:    true
+          async:    true,
+          program:  true,
+          fs:       true,
+          cache:    true
         }
       }
     },

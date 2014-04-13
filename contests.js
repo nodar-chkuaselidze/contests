@@ -1,11 +1,18 @@
 #!/usr/bin/env node
 'use strict';
 
-global.ROOT    = __dirname;
-global.program = require('./package.json');
-global.fs      = require('fs');
-global.args    = require('commander');
+global._       = require('lodash');
 
-var debug = require('debug')('contests');
+_.extend(global, {
+  ROOT:    __dirname,
+  program: require('./package.json'),
+  Cache:   require('./lib/Cache.js'),
+  fs:      require('fs'),
+});
 
+var args  = require('commander'),
+    debug = require('debug')('contests');
+
+new Cache('tmp');
 args.version(program.version);
+debug('Version of ' + program.name + ' is ' + program.version);
