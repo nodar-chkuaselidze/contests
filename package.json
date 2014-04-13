@@ -1,5 +1,5 @@
 {
-  "name": "contests",
+  "name": "contests.js",
   "version": "0.0.0",
   "description": "Training environment",
   "main": "contests.js",
