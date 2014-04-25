@@ -56,6 +56,7 @@ module.exports = function(grunt) {
           program:  true,
           fs:       true,
           Cache:    true,
+          cacher:   true,
           _:        true
         }
       }

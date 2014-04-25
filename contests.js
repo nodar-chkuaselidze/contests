@@ -10,9 +10,12 @@ _.extend(global, {
   fs:      require('fs'),
 });
 
+global.cacher = new Cache(program.name);
+
 var args  = require('commander'),
     debug = require('debug')('contests');
 
-new Cache('tmp');
+cacher.createCacheDir();
+
 args.version(program.version);
 debug('Version of ' + program.name + ' is ' + program.version);
