@@ -16,7 +16,8 @@ cacher.createCacheDir();
 var args  = require('commander'),
     debug = require('debug')('contests'),
     Engines = require('./lib/Engines'),
-    engines = new Engines('./engines');
+    engines = new Engines('./engines'),
+    enginesList = engines.getList();
 
 
 args.version(program.version);
@@ -27,10 +28,20 @@ args.command('list')
       padd += padd;
 
       console.log('  Engines List:');
-      engines.getList().forEach(function (engine) {
+      enginesList.forEach(function (engine) {
         console.log(padd + engine);
       });
     });
+
+args.command('test <engine> <id>')
+    .description('run tests for problemId for <engine>')
+    .action(function (engine, problem) {
+      console.log(engine, problem);
+    });
+
+args.command('help').action(function () {
+  args.help();
+});
 
 args.parse(process.argv);
 
