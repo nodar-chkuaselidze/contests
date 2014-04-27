@@ -51,4 +51,12 @@ args.command('help').action(function () {
 
 args.parse(process.argv);
 
+var commandCalled = args.args.some(function (elem) {
+  return elem instanceof args.Command;
+});
+
+if (!commandCalled) {
+  args.help();
+}
+
 debug('Version of ' + program.name + ' is ' + program.version);
