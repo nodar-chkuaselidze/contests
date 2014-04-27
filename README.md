@@ -1,4 +1,2 @@
-olympiads
+Run Tests Locally
 =========
-
-All olympos here

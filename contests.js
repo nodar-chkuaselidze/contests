@@ -11,11 +11,11 @@ _.extend(global, {
 });
 
 global.cacher = new Cache(program.name);
+cacher.createCacheDir();
 
 var args  = require('commander'),
     debug = require('debug')('contests');
 
-cacher.createCacheDir();
 
 args.version(program.version);
 debug('Version of ' + program.name + ' is ' + program.version);
