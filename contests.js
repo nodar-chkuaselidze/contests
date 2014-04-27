@@ -33,9 +33,15 @@ args.command('list')
       });
     });
 
-args.command('test <engine> <id>')
-    .description('run tests for problemId for <engine>')
-    .action(function (engine, problem) {
+args.command('test <engine> <id> <file>')
+    .description('run tests for problem for <engine>')
+    .action(function (engine, problem, file) {
+      console.log(engine, problem);
+    });
+
+args.command('post <engine> <id> <file>')
+    .description('post test to <engine>')
+    .action(function (engine, problem, file) {
       console.log(engine, problem);
     });
 
