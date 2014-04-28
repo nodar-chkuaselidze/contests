@@ -31,7 +31,7 @@ function testOrPost (cmd, engine, problem, file, done) {
 
     engine = new Engine(problem, file, engineCache);
 
-    engine[cmd](done);;
+    engine[cmd](done);
   } catch (e) {
     console.log(e);
   }
