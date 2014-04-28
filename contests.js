@@ -5,6 +5,7 @@ global._       = require('lodash');
 
 _.extend(global, {
   ROOT:    __dirname,
+  CWD:     process.cwd(),
   program: require('./package.json'),
   Cache:   require('./lib/Cache.js'),
   fs:      require('fs'),
@@ -16,7 +17,7 @@ cacher.createCacheDir();
 var args  = require('commander'),
     debug = require('debug')('contests'),
     Engines = require('./lib/Engines'),
-    engines = new Engines('./engines'),
+    engines = new Engines(ROOT + '/engines'),
     enginesList = engines.getList(),
     padd = '  ', paddx2 = padd + padd;
 
