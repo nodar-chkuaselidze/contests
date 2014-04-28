@@ -21,16 +21,17 @@ var args  = require('commander'),
     enginesList = engines.getList(),
     padd = '  ', paddx2 = padd + padd;
 
-function testOrPost (cmd, engine) {
-  var cmdArgs = Array.prototype.slice.call(arguments, 2),
+function testOrPost (cmd, engine, problem, file, done) {
+  var Engine = engines.getEngine(engine),
       engineCache;
+
   try {
     engineCache = new Cache(engine, cacher.getCacheDir());
     engineCache.createCacheDir();
 
-    engine = engines.getEngine(engine, engineCache);
+    engine = new Engine(problem, file, engineCache);
 
-    engine[cmd].apply(engine, cmdArgs);
+    engine[cmd](done);;
   } catch (e) {
     console.log(e);
   }
