@@ -20,6 +20,16 @@ var args  = require('commander'),
     enginesList = engines.getList(),
     padd = '  ', paddx2 = padd + padd;
 
+function testOrPost (cmd, engine) {
+  var cmdArgs = Array.prototype.slice.call(arguments, 2);
+  try {
+    var engine = engines.getEngine(engine);
+
+    engine[cmd].apply(engine, cmdArgs);
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 args.version(program.version);
 args.command('list')
@@ -34,19 +44,17 @@ args.command('list')
 args.command('test <engine> <id> <file>')
     .description('run tests for problem for <engine>')
     .action(function (engine, problem, file) {
-      if (enginesList.indexOf(engine) > -1) {
-        engines
-          .getEngine(engine)
-          .test(engine, problem, file, function () {
-          });
-      } else {
-        console.log(padd + 'Engine "' + engine + '" not found, try list');
-      }
+      testOrPost('test', engine, problem, file, function (error) {
+        console.log('tested');
+      });
     });
 
 args.command('post <engine> <id> <file>')
     .description('post test to <engine>')
     .action(function (engine, problem, file) {
+      testOrPost('post', engine, problem, file, function (error) {
+        console.log('posted');
+      });
     });
 
 args.command('help').action(function () {
