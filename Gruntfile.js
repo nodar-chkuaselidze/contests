@@ -52,6 +52,7 @@ module.exports = function(grunt) {
           describe: true,
           it:       true,
           ROOT:     true,
+          CWD:      true,
           async:    true,
           program:  true,
           fs:       true,
