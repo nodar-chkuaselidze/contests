@@ -17,32 +17,36 @@ var args  = require('commander'),
     debug = require('debug')('contests'),
     Engines = require('./lib/Engines'),
     engines = new Engines('./engines'),
-    enginesList = engines.getList();
+    enginesList = engines.getList(),
+    padd = '  ', paddx2 = padd + padd;
 
 
 args.version(program.version);
 args.command('list')
     .description('List of contests')
     .action(function (cmd, options) {
-      var padd = '  ';
-      padd += padd;
-
       console.log('  Engines List:');
       enginesList.forEach(function (engine) {
-        console.log(padd + engine);
+        console.log(paddx2 + engine);
       });
     });
 
 args.command('test <engine> <id> <file>')
     .description('run tests for problem for <engine>')
     .action(function (engine, problem, file) {
-      console.log(engine, problem);
+      if (enginesList.indexOf(engine) > -1) {
+        engines
+          .getEngine(engine)
+          .test(engine, problem, file, function () {
+          });
+      } else {
+        console.log(padd + 'Engine "' + engine + '" not found, try list');
+      }
     });
 
 args.command('post <engine> <id> <file>')
     .description('post test to <engine>')
     .action(function (engine, problem, file) {
-      console.log(engine, problem);
     });
 
 args.command('help').action(function () {
