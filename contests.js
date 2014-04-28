@@ -22,9 +22,10 @@ var args  = require('commander'),
     padd = '  ', paddx2 = padd + padd;
 
 function testOrPost (cmd, engine) {
-  var cmdArgs = Array.prototype.slice.call(arguments, 2);
+  var cmdArgs = Array.prototype.slice.call(arguments, 2),
+      engineCache;
   try {
-    var engineCache = new Cache(engine, cacher.getCacheDir());
+    engineCache = new Cache(engine, cacher.getCacheDir());
     engineCache.createCacheDir();
 
     engine = engines.getEngine(engine, engineCache);
