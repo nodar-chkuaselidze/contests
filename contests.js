@@ -7,7 +7,8 @@ _.extend(global, {
   ROOT:    __dirname,
   CWD:     process.cwd(),
   program: require('./package.json'),
-  Cache:   require('./lib/Cache.js'),
+  Cache:   require('./lib/Cache'),
+  File:    require('./lib/File'),
   fs:      require('fs'),
 });
 
@@ -29,7 +30,7 @@ function testOrPost (cmd, engine, problem, file, done) {
     engineCache = new Cache(engine, cacher.getCacheDir());
     engineCache.createCacheDir();
 
-    engine = new Engine(problem, file, engineCache);
+    engine = new Engine(problem, new File(file), engineCache);
 
     engine[cmd](done);
   } catch (e) {
