@@ -10,6 +10,7 @@ _.extend(global, {
   Cache:   require('./lib/Cache'),
   File:    require('./lib/File'),
   fs:      require('fs'),
+  nconf:   require('nconf')
 });
 
 global.cacher = new Cache(program.name);
