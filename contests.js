@@ -21,7 +21,11 @@ var args  = require('commander'),
     Engines = require('./lib/Engines'),
     engines = new Engines(ROOT + '/engines'),
     enginesList = engines.getList(),
-    padd = '  ', paddx2 = padd + padd;
+    padd = '  ', paddx2 = padd + padd,
+    nconfFile = File.getHomeDir() + '/.contests.json';
+
+debug('Loading configurations from: ' + nconfFile);
+nconf.file({ file : nconfFile });
 
 function testOrPost (cmd, engine, problem, file, done) {
   var Engine = engines.getEngine(engine),
@@ -31,7 +35,7 @@ function testOrPost (cmd, engine, problem, file, done) {
     engineCache = new Cache(engine, cacher.getCacheDir());
     engineCache.createCacheDir();
 
-    engine = new Engine(problem, new File(file), engineCache);
+    engine = new Engine(problem, new File(file), engineCache, nconf.get(engine));
 
     engine[cmd](done);
   } catch (e) {
