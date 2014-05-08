@@ -49,6 +49,7 @@ module.exports = function(grunt) {
         white:     false,
         loopfunc:  true,
         globals: {
+          superagent: true,
           describe: true,
           it:       true,
           ROOT:     true,
@@ -58,6 +59,7 @@ module.exports = function(grunt) {
           fs:       true,
           Cache:    true,
           cacher:   true,
+          Q:        true,
           _:        true
         }
       }

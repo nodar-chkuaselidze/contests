@@ -10,6 +10,8 @@ _.extend(global, {
   Cache:   require('./lib/Cache'),
   File:    require('./lib/File'),
   fs:      require('fs'),
+  Q:       require('q'),
+  request: require('superagent'),
   nconf:   require('nconf')
 });
 
