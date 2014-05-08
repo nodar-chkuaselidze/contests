@@ -1,13 +1,16 @@
 'use strict';
 
-function CF(problem, file, cacher) {
+function CF(problem, file, cacher, confs) {
   this.problem = problem;
   this.file    = file;
   this.cacher  = cacher;
+  this.confs   = confs;
 }
 
+CF.prototype.testFetch = function (done) {
+};
+
 CF.prototype.test = function (done) {
-  console.log('test?');
   done();
 };
 
