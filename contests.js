@@ -29,20 +29,22 @@ var args  = require('commander'),
 debug('Loading configurations from: ' + nconfFile);
 nconf.file({ file : nconfFile });
 
-function testOrPost (cmd, engine, problem, file, done) {
+function testOrPost (cmd, engine, problem, file) {
   var Engine = engines.getEngine(engine),
       engineCache;
 
-  try {
-    engineCache = new Cache(engine, cacher.getCacheDir());
-    engineCache.createCacheDir();
+  engineCache = new Cache(engine, cacher.getCacheDir());
+  engineCache.createCacheDir();
 
-    engine = new Engine(problem, new File(file), engineCache, nconf.get(engine));
+  engine = new Engine(problem, new File(file), engineCache, nconf.get(engine));
 
-    engine[cmd](done);
-  } catch (e) {
-    console.log(e);
+  var results = engine[cmd]();
+
+  if (!Q.isPromise(results)) {
+    return Q.reject('Engine API should return Promise');
   }
+
+  return engine[cmd]();
 }
 
 args.version(program.version);
@@ -58,17 +60,17 @@ args.command('list')
 args.command('test <engine> <id> <file>')
     .description('run tests for problem for <engine>')
     .action(function (engine, problem, file) {
-      testOrPost('test', engine, problem, file, function (error) {
-        console.log('tested');
-      });
+      testOrPost('test', engine, problem, file).then(function () {
+          console.log('tested');
+        }).catch(errorCmd);
     });
 
 args.command('post <engine> <id> <file>')
     .description('post test to <engine>')
     .action(function (engine, problem, file) {
-      testOrPost('post', engine, problem, file, function (error) {
+      testOrPost('post', engine, problem, file).then(function () {
         console.log('posted');
-      });
+      }).catch(errorCmd);
     });
 
 args.command('help').action(function () {
@@ -83,6 +85,10 @@ var commandCalled = args.args.some(function (elem) {
 
 if (!commandCalled) {
   args.help();
+}
+
+function errorCmd(error) {
+  console.log(error);
 }
 
 debug('Version of ' + program.name + ' is ' + program.version);

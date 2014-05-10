@@ -1,4 +1,6 @@
 'use strict';
+var Q = require('q'),
+    request = require('superagent');
 
 function CF(problem, file, cacher, confs) {
   this.problem = problem;
@@ -7,16 +9,13 @@ function CF(problem, file, cacher, confs) {
   this.confs   = confs;
 }
 
-CF.prototype.testFetch = function (done) {
+CF.prototype.testFetch = function () {
 };
 
-CF.prototype.test = function (done) {
-  done();
+CF.prototype.test = function () {
 };
 
-CF.prototype.post = function (done) {
-  console.log('post');
-  done();
+CF.prototype.post = function () {
 };
 
 module.exports = CF;
