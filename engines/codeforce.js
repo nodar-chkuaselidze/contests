@@ -12,7 +12,7 @@ function CF(problem, file, cacher, confs) {
 
 CF.prototype.testFetch = function () {
   this.fetchTry = true;
-  return Q.reject('Fetch is not implemented');
+  return Q.resolve('Fetch is not implemented');
 };
 
 CF.prototype.test = function (i) {
@@ -22,21 +22,23 @@ CF.prototype.test = function (i) {
 
   testFile = self.problem + '/test' + i;
 
-  return self.cacher.exists(testFile)
-    .then(function () {
-      console.log(123);
-    })
-    .catch(function () {
-      if (self.fetchTry) {
-        throw 'Something went wrong while fetching..';
-      }
+  var test = Q.async(function *() {
+    yield self.cacher.exists(testFile);
 
-      return self.testFetch()
-                 .then(function () {
-                   return self.test();
-                 })
-                 .catch(function (e) { throw e; })
+    console.log('Run file test');
+  })();
+
+  return test.catch(function (e) {
+    if (self.fetchTry) {
+      throw 'Something went wrong while fetching..';
+    }
+
+    return self.testFetch().then(function () {
+      return self.test();
+    }).catch(function (e) {
+      throw e;
     });
+  });
 };
 
 CF.prototype.post = function () {
