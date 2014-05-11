@@ -12,7 +12,7 @@ function CF(problem, file, cacher, confs) {
 
 CF.prototype.testFetch = function () {
   this.fetchTry = true;
-  return Q.resolve('Fetch is not implemented');
+  return Q.reject('Fetch is not implemented');
 };
 
 CF.prototype.test = function (i) {
@@ -30,7 +30,7 @@ CF.prototype.test = function (i) {
 
   return test.catch(function (e) {
     if (self.fetchTry) {
-      throw 'Something went wrong while fetching..';
+      throw 'Tests were fetched to incorrect place..';
     }
 
     return self.testFetch().then(function () {
