@@ -44,7 +44,7 @@ function runCmd (cmd, engine, problem, file) {
     return Q.reject('Engine API should return Promise');
   }
 
-  return engine[cmd]();
+  return results;
 }
 
 args.version(program.version);
