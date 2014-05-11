@@ -29,7 +29,7 @@ var args  = require('commander'),
 debug('Loading configurations from: ' + nconfFile);
 nconf.file({ file : nconfFile });
 
-function testOrPost (cmd, engine, problem, file) {
+function runCmd (cmd, engine, problem, file) {
   var Engine = engines.getEngine(engine),
       engineCache;
 
@@ -60,7 +60,7 @@ args.command('list')
 args.command('test <engine> <id> <file>')
     .description('run tests for problem for <engine>')
     .action(function (engine, problem, file) {
-      testOrPost('test', engine, problem, file).then(function () {
+      runCmd('test', engine, problem, file).then(function () {
           console.log('tested');
         }).catch(errorCmd);
     });
@@ -68,7 +68,7 @@ args.command('test <engine> <id> <file>')
 args.command('post <engine> <id> <file>')
     .description('post test to <engine>')
     .action(function (engine, problem, file) {
-      testOrPost('post', engine, problem, file).then(function () {
+      runCmd('post', engine, problem, file).then(function () {
         console.log('posted');
       }).catch(errorCmd);
     });
